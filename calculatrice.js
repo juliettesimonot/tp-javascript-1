@@ -14,7 +14,8 @@ function isNumber(nombre){
         nombre=0;
         nombre=prompt("Erreur saisie : Pas un nombre \nEntrez un nombre");
     }
-    return nombre = parseInt(nombre);
+    nombre = parseInt(nombre);
+    return nombre;
 }
 
 function addition(a,b){
@@ -44,15 +45,23 @@ function calculatrice(){
     resultat=0;
     do{
         operateur = prompt(" Choisir : + | - | * | / ");
-        console.log(operateur.length);
-    } while(operateur.length=0 || operateur!="+" && operateur!="-" && operateur!="*" && operateur!="/");
-    
-    
+    } while(operateur==null || operateur.length==0 || operateur!="+" && operateur!="-" && operateur!="*" && operateur!="/");
+
+
     nombre1=prompt("Entrez un premier nombre");
-    nombre1=isNumber(nombre1);
+    if(nombre1!=null){
+        nombre1=isNumber(nombre1);
+    }else{
+       return;
+    }
+    
     
     nombre2 = prompt("Entrez un second nombre");
-    nombre2 = isNumber(nombre2);
+    if(nombre2!=null){
+        nombre2=isNumber(nombre2);
+    }else{
+        return;
+    }
     
     try {
         switch (operateur) {
@@ -74,7 +83,6 @@ function calculatrice(){
                 break;
         }
         alert("Le resultat de "+nombre1+operateur+nombre2+" = "+resultat);
-      
         
     } catch (error) {
         alert(error);
@@ -84,13 +92,16 @@ function calculatrice(){
 
 calculatrice();
 
-let recommencer;
-recommencer = confirm("Recommencer?");
-if(recommencer==true){
-    calculatrice();
-}else{
-    alert("Merci à bientôt");
-}
+
+    let recommencer;
+    recommencer = confirm("Recommencer?");
+    if(recommencer==true){
+        calculatrice();
+    }else{
+        alert("Au revoir");
+    }
+
+
 
 
 
